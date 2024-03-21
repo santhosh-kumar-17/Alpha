@@ -1,0 +1,5 @@
+# to install node modules
+npm install
+
+# to install nodemailer
+npm install nodemailer

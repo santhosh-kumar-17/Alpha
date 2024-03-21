@@ -1,0 +1,5 @@
+# to install node modules
+npm install
+
+# for react router dom 
+npm install react-router-dom
