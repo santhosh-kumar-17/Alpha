@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className={`navbar-menu ${isMenuOpen ? 'open' : ''}`}>
           <a href="#home">Home</a>
           <a href="https://intradayglobal.com/alpha-logins/">Alpha chart</a>
-          <a href="#jobs">Other Projects</a>
+          <a href="https://tawk.to/chat/646f0e0e74285f0ec46d89fb/1h51i9vdo">Contact us</a>
           <div className="navbar-profile" style={{background: 'green'}}>Your Profile</div> {/* Apply background color here */}
         </div>
         <div className={`menu-toggle ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>

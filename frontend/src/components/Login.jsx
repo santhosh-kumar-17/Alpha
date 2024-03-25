@@ -26,7 +26,7 @@ function Login() {
         },
       });
      
-      if(response.data.status === "Succes")
+      if(response.data.status === "Success")
       {
         navigate('/Home');
       }

@@ -13,8 +13,8 @@ const config = {
   port: 587,
   secure: false,
   auth: {
-      user: "22mx128@psgtech.ac.in",
-      pass: "vxli mnpw iktz unif",
+      user: "22mx222@psgtech.ac.in",
+      pass: "lasc dhuz sxqd wbwe",
   },
 };
 
@@ -35,7 +35,7 @@ router.post('/generateOtp', async (req, res) => {
   const addOtp = new OtpVerify(req.body);
 
   let mailOptions = {
-    from: '22mx128@psgtech.ac.in',
+    from: '22mx222@psgtech.ac.in',
     to: req.body.Email,
     subject: 'Otp Verification for Application',
     text: `OTP for verification: ${otp}`

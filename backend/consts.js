@@ -1,6 +1,6 @@
 auth = {
-    "mailid":"22mx128@psgtech.ac.in",
-    "password":"vxli mnpw iktz unif"
+    "mailid":"22mx222@psgtech.ac.in",
+    "password":"itqg afid cyku xcby"
 }
 
 module.exports = auth

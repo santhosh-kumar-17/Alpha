@@ -11,8 +11,8 @@ const config = {
     port: 587,
     secure: false,
     auth: {
-        user: "22mx128@psgtech.ac.in",
-        pass: "vxli mnpw iktz unif",
+        user: "22mx222@psgtech.ac.in",
+        pass: "itqg afid cyku xcby",
     },
 };
 
