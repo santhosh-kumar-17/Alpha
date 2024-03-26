@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './login.css';
 
 function Login() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+    const [isSignUp, setIsSignUp] = useState(false); // Define isSignUp state
+  const toggleSignUp = () => setIsSignUp(!isSignUp); // Define toggleSignUp function
 
   const handleChange = (e) => {
     setFormData({
@@ -16,97 +18,102 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleLogin = async () => {
-    
     try {
-      const response = await axios.get('http://localhost:6969/Log-in', {
+      const response = await axios.get("http://localhost:6969/Log-in", {
         params: {
           email: formData.email,
           password: formData.password,
         },
       });
-     
-      if(response.data.status === "Success")
-      {
-        navigate('/Home');
-      }
-  
-     
-      
-     
-   
-       
 
-      if(response.data.data.message === "User not registered yet")
-      {
-        alert("User not registered yet")
-        setFormData ({
+      if (response.data.status === "Success") {
+        navigate("/Home");
+      }
+
+      if (response.data.data.message === "User not registered yet") {
+        alert("User not registered yet");
+        setFormData({
           email: "",
           password: "",
         });
       }
-     
-     
     } catch (error) {
-      console.error('Error during login:', error.response);
+      console.error("Error during login:", error.response);
       // Handle the error
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Assuming you want to submit the data as JSON
     const jsonData = JSON.stringify(formData);
-
     console.log("Submitted Data:", jsonData);
-
     // Add your logic to send the JSON data to the server or perform any other necessary actions
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-      <form style={{ width: "300px", padding: "20px", border: "1px solid #ddd", borderRadius: "8px", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }} onSubmit={handleSubmit}>
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Sign in to your account</h2>
-        <label style={{ marginBottom: "10px", display: "block" }}>
-          Email:
+    <div className={`cont ${isSignUp ? 's--signup' : ''}`}>
+      <div className="form sign-in">
+        <h2>Welcome</h2>
+        <label>
+          <span>Email</span>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            style={{ width: "100%", padding: "8px", marginTop: "5px", borderRadius: "4px", border: "1px solid #ddd" }}
-            placeholder="Enter your email"
           />
         </label>
-        <label style={{ marginBottom: "10px", display: "block" }}>
-          Password:
+        <label>
+          <span>Password</span>
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-            style={{ width: "100%", padding: "8px", marginTop: "5px", borderRadius: "4px", border: "1px solid #ddd" }}
-            placeholder="Enter your password"
           />
         </label>
+        <p className="forgot-pass">Forgot password?</p>
         <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
+          type="button"
+          className="submit"
           onClick={handleLogin}
         >
           Sign In
         </button>
-        <p style={{ textAlign: "center", marginTop: "10px", fontSize: "14px" }}>Forgot password?</p>
-        <a href="/Signup">create new account</a>
-      </form>
+      </div>
+      <div className="sub-cont">
+        <div className="img">
+          <div className="img__text m--up">
+            <h3>Don't have an account? Please Sign up!</h3>
+          </div>
+          <div className="img__text m--in">
+            <h3>If you already have an account, just sign in.</h3>
+          </div>
+          <div className="img__btn" onClick={toggleSignUp}>
+            <span className="m--up">Sign Up</span>
+            <span className="m--in">Sign In</span>
+          </div>
+        </div>
+        <div className="form sign-up">
+          <h2>Create your Account</h2>
+          <label>
+            <span>Name</span>
+            <input type="text" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" />
+          </label>
+          <button type="button" className="submit">Sign Up</button>
+        </div>
+      </div>
     </div>
   );
 }
