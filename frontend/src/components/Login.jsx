@@ -9,7 +9,9 @@ function Login() {
     email: "",
     password: "",
   });
-    const [isSignUp, setIsSignUp] = useState(false); // Define isSignUp state
+  const [isSignUp, setIsSignUp] = useState(false); // Define isSignUp state
+  const [verifyButtonVisible, setVerifyButtonVisible] = useState(true); // Define state for verify button visibility
+
   const toggleSignUp = () => setIsSignUp(!isSignUp); // Define toggleSignUp function
 
   const handleChange = (e) => {
@@ -51,6 +53,11 @@ function Login() {
     const jsonData = JSON.stringify(formData);
     console.log("Submitted Data:", jsonData);
     // Add your logic to send the JSON data to the server or perform any other necessary actions
+  };
+
+  const handleVerifyClick = () => {
+    // Add logic here to handle verification
+    setVerifyButtonVisible(false); // Hide the verify button
   };
 
   return (
@@ -107,8 +114,16 @@ function Login() {
             <span>Email</span>
             <input type="email" />
           </label>
+          &nbsp; {/* Non-breaking space */}
+          {verifyButtonVisible && (
+            <button type="button" style={{ backgroundColor: 'green', color: 'white' }} onClick={handleVerifyClick}>Verify</button>
+          )}
           <label>
             <span>Password</span>
+            <input type="password" />
+          </label>
+          <label>
+            <span>OTP</span>
             <input type="password" />
           </label>
           <button type="button" className="submit">Sign Up</button>
